@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.header {
+    background-color: aquamarine;
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+.conteudo {
+    background-color: rgb(238, 77, 176);
+    flex-grow: 2;
+    display: flex;
+    padding: 20px;
+}
+
+.sidebar {
+    background-color: rgb(252, 252, 127);
+    flex-grow: 1;
+    width: 200px;
+    padding: 20px;
+}
+
+.footer {
+    background-color: greenyellow;
+    display:flex;
+}
+
+.part {
+    flex-grow: 1;
+    text-align: center;
+    padding: 20px;
+}
