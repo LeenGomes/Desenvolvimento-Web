@@ -10,19 +10,24 @@ body {
     padding: 20px;
 }
 
+.flex-container {
 
+}
 
 .conteudo {
     background-color: rgb(238, 77, 176);
     flex-grow: 2;
     display: flex;
-    padding: 20px;
+    align-content: left;
+    padding-left: 850px;
+    height: 400px;
 }
 
 .sidebar {
     background-color: rgb(252, 252, 127);
     flex-grow: 1;
-    width: 200px;
+    align-content: right;
+    width: 50px;
     padding: 20px;
 }
 
