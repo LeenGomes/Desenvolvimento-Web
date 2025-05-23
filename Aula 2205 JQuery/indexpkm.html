@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Pokédex Dinâmica</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Pokemons (1–168)</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Imagem</th>
+        <th>Altura</th>
+        <th>Peso</th>
+        <th>Espécie</th>
+      </tr>
+    </thead>
+    <tbody id="tabela-pokemons">
+    </tbody>
+  </table>
+
+  <script>
+    $(document).ready(function () {
+      for (let id = 1; id <= 168; id++) {
+        $.ajax({
+          url: `https://pokeapi.co/api/v2/pokemon/${id}`,
+          method: 'GET',
+          success: function (pokemon) {
+            $.ajax({
+              url: pokemon.species.url,
+              method: 'GET',
+              success: function (especie) {
+                const linha = `
+                  <tr>
+                    <td>${pokemon.id}</td>
+                    <td>${pokemon.name}</td>
+                    <td><img src="${pokemon.sprites.front_default}" alt="${pokemon.name}"></td>
+                    <td>${pokemon.height}</td>
+                    <td>${pokemon.weight}</td>
+                    <td>${especie.genera.find(g => g.language.name === 'en').genus}</td>
+                  </tr>`;
+                $('#tabela-pokemons').append(linha);
+              }
+            });
+          },
+          error: function () {
+            console.warn(`Erro ao carregar o Pokémon ID ${id}`);
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
